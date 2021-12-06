@@ -1,3 +1,5 @@
+#This script converts a text file that contains ones and zeroes to a proper binary file. 
+
 fin=open("date.out","r")
 data=fin.read().strip()
 
