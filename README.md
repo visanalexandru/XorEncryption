@@ -85,7 +85,7 @@ That is, we will examine the bytes at indicies congruent to X (**modulo L**). We
 
 We can assume that the most frequent symbol is the result of the XOR operation between one of the characters above and the X-th character of the key.   Therefore, we can find the X-th character of the key by "XOR-ing" together the most frequent symbol and one of the characters above.
 
-The following [script](crack/output_crack.py) implements the algorithm we just described.
+The following [script](crack/output_crack.py) implements the algorithm we just described:
 ```python
 input = open("binary.out", "rb")
 
