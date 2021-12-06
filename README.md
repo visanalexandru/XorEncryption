@@ -47,6 +47,24 @@ B = A ⊕ K
 A ⊕ A = 0  
 A ⊕ B = A ⊕ A ⊕ K = 0 ⊕ K = K  
 
-Therefore, we can find the key by computing the XOR of A and B.
+Therefore, we can find the key by computing the XOR of A and B.  
+This [script](crack/input_output_crack.py) does exactly that:
 
+```python
+a=open("date.in","r")
+b=open("binary.out","rb")
 
+#The maximum length of the key is 20, so read only 20 characters from each file.
+chunk_size=20
+
+chunk_a=a.read(chunk_size).encode() #encode to binary
+chunk_b=b.read(chunk_size) #already binary
+
+#Xor the input with the output
+xored=[chr(x[0]^x[1]) for x in zip(chunk_a,chunk_b)]
+
+print(*xored)
+```
+
+Executing the script gives us the following output: ```A 3 q t R y 7 8 K L o a 1 9 A 3 q t R y```.  
+Therefore we can conclude that the key is ```A3qtRy78KLoa19```
