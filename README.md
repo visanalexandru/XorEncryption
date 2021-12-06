@@ -38,3 +38,15 @@ with open("binary.out","wb") as fout:
 
 ```
 Now that we have the [binary file](crack/binary.out) we can continue with our crack.
+
+### 2. Cracking the key using the input text file and the output binary file
+If we have access to both the [input text file](https://github.com/aberbecaru/RAR2002/blob/master/date.in) and the [output binary file](crack/binary.out) we can use the self-inverse property of the XOR operation to find the key.  
+Let's denote the input with A, the key with K, and the output with B.
+
+B = A ⊕ K  
+A ⊕ A = 0  
+A ⊕ B = A ⊕ A ⊕ K = 0 ⊕ K = K  
+
+Therefore, we can find the key by computing the XOR of A and B.
+
+
