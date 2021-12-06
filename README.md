@@ -125,7 +125,17 @@ for key_len in range(10, 16):
     for x in lst:
         acm += chr(x)
 
-    print(acm)
+    print(f"key length: {key_len} ",acm)
 
+input.close()
 ```
-
+Executing this script gives us the following output:
+```
+key length: 10  q8K8787878
+key length: 11  88888888888
+key length: 12  787818q878q8
+key length: 13  8888888888t88
+key length: 14  A3qtRy78KLoa19
+key length: 15  888888888888888
+```
+We can now try all keys until we find the correct one, and we have the result: ```A3qtRy78KLoa19```.
