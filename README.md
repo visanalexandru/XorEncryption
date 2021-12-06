@@ -1,4 +1,4 @@
-# XorEncrypt
+# XorEncryption
 
 This python project is a simple implementation of the xor encryption method. 
 
