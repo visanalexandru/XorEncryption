@@ -68,3 +68,64 @@ print(*xored)
 
 Executing the script gives us the following output: ```A 3 q t R y 7 8 K L o a 1 9 A 3 q t R y```.  
 Therefore we can conclude that the key is ```A3qtRy78KLoa19```
+
+
+### 3. Cracking the key using only the output binary file
+Through analysis we have concluded that the most frequent characters used in a file that contains romainian text are:  
+- the space character (**32** in ASCII),
+- the letter "a" (**97** in ASCII)
+- the letter "i" (**105** in ASCII)
+- the letter "e" (**101** in ASCII)
+
+We know that the key length is between 10 and 15 characters. We start by guessing the key length, let us denote it "L".
+
+For every position X in the key, we will look at the bytes in the binary file that we know are the result of the XOR operation between the corresponding character in the input file and the X-th character of the key.  
+
+That is, we will examine the bytes at indicies congruent to X (**modulo L**). We will analyse the frequency of each such symbol.  
+
+We can assume that the most frequent symbol is the result of the XOR operation between one of the characters above and the X-th character of the key.   Therefore, we can find the X-th character of the key by "XOR-ing" together the most frequent symbol and one of the characters above.
+
+The following [script](crack/output_crack.py) implements the algorithm we just described.
+```python
+input = open("binary.out", "rb")
+
+def bun(x):
+    return (x >= ord('0') and x <= ord('9')) or (x >= ord('a') and x <= ord('z')) or (x >= ord('A') and x <= ord('Z'))
+
+def alege(x):
+    if bun(x^ord(' ')):
+        return (x^ord(' '))
+    if bun(x^ord('a')):
+        return (x^ord('a'))
+    if bun(x ^ ord('i')):
+        return (x ^ ord('i'))
+    return (x ^ ord('e'))
+
+for key_len in range(10, 16):
+    input.seek(0)
+    index = 0
+    frq = [{} for _ in range(0, key_len)]
+    byte = input.read(1)
+    while byte:
+        if byte not in frq[index]:
+            frq[index][byte] = 1
+        else:
+            frq[index][byte] += 1
+        index += 1
+        index %= key_len
+        byte = input.read(1)
+
+    lst = []
+    for i in range(0, key_len):
+        acm = [(x, frq[i][x]) for x in frq[i]]
+        acm = sorted(acm, key=(lambda x:-x[1]))
+        lst.append(alege(int.from_bytes(acm[0][0], 'little')))
+
+    acm = ""
+    for x in lst:
+        acm += chr(x)
+
+    print(acm)
+
+```
+
