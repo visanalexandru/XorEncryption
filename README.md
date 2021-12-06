@@ -37,3 +37,4 @@ with open("binary.out","wb") as fout:
         fout.write(to_bytes)
 
 ```
+Now that we have the [binary file](crack/binary.out) we can continue with our crack.
