@@ -13,7 +13,10 @@ This python project is a simple implementation of the xor encryption method.
   Decrypting a file will require a password, which is then applied to a binary file to generate a text file. Without the correct password, the output will not
   be correct.
 
-### Cracking
-Team name: **CSV**  
-Opponent team name: **RAR2002**  
-Opponent team repository: https://github.com/aberbecaru/RAR2002
+## Cracking
+  Team name: **CSV**  
+  Opponent team name: **RAR2002**  
+  Opponent team repository: https://github.com/aberbecaru/RAR2002
+  
+  All the code used in this section is available in the [crack](crack) folder
+  ### 1. Converting the cyphertext into a proper binary file
