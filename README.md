@@ -14,6 +14,6 @@ This python project is a simple implementation of the xor encryption method.
   be correct.
 
 ### Cracking
-Team name: CSV  
-Opponent team name:RAR2002  
-Opponent team repo: https://github.com/aberbecaru/RAR2002
+Team name: **CSV**  
+Opponent team name: **RAR2002**  
+Opponent team repository: https://github.com/aberbecaru/RAR2002
