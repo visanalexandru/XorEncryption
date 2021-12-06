@@ -36,6 +36,6 @@ for key_len in range(10, 16):
     for x in lst:
         acm += chr(x)
 
-    print(acm)
+    print("key length: {key_len}",acm)
 
 input.close()
